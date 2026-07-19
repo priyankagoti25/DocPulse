@@ -1,7 +1,5 @@
 # DocPulse
 
-# 📄 DocPulse
-
 DocPulse is a real-time repository health monitoring platform that analyzes GitHub repositories, tracks documentation quality, and updates repository scores instantly using GitHub Webhooks and Socket.IO.
 
 ## ✨ Features
@@ -43,13 +41,7 @@ DocPulse is a real-time repository health monitoring platform that analyzes GitH
 
 ## 🚀 Live Demo
 
-**Frontend**
-
-https://your-frontend.vercel.app
-
-**Backend API**
-
-https://your-backend-domain.com
+https://doc-pulse-mu.vercel.app
 
 ---
 
@@ -63,85 +55,3 @@ https://your-backend-domain.com
 > **Note:** Only repositories owned by your GitHub account can be connected.
 
 ---
-
-## 📷 Screenshots
-
-(Add screenshots here)
-
----
-
-## ⚙️ Local Setup
-
-### Clone
-
-```bash
-git clone https://github.com/yourusername/docpulse.git
-cd docpulse
-```
-
-### Backend
-
-```bash
-cd server
-npm install
-npm run dev
-```
-
-### Frontend
-
-```bash
-cd client
-npm install
-npm run dev
-```
-
----
-
-## 🔑 Environment Variables
-
-### Server
-
-```env
-PORT=
-MONGODB_URI=
-
-JWT_SECRET=
-
-GITHUB_CLIENT_ID=
-GITHUB_CLIENT_SECRET=
-GITHUB_WEBHOOK_SECRET=
-
-CLIENT_URL=
-
-ENCRYPTION_KEY=
-```
-
-### Client
-
-```env
-VITE_API_URL=
-```
-
----
-
-## 📂 Project Structure
-
-```
-docpulse
-│
-├── client/
-├── server/
-└── README.md
-```
-
----
-
-## 👨‍💻 Author
-
-Your Name
-
-LinkedIn
-
-Portfolio
-
-GitHub

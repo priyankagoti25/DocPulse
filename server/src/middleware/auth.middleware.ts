@@ -3,6 +3,9 @@ import { verifyAccessToken } from "../utils/jwt.js";
 
 export interface AuthenticatedRequest extends Request {
   userId?: string;
+  params: {
+    id: string;
+  };
 }
 
 export function requireAuth(

@@ -45,7 +45,6 @@ export async function getMyRepositories(
   res: Response,
 ): Promise<void> {
   const repos = await listRepositoriesForUser(req.userId!);
-  console.log("repos-->", repos);
   res.json(repos);
 }
 

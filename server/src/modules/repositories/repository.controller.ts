@@ -1,5 +1,5 @@
 import { Response } from "express";
-import { AuthenticatedRequest } from "../../middleware/auth.middleware";
+import { AuthenticatedRequest } from "../../middleware/auth.middleware.js";
 import {
   listAvailableRepos,
   connectRepository,
@@ -7,7 +7,7 @@ import {
   getRepositoryDetail,
   submitRepositoryReview,
   deleteRepository,
-} from "./repository.service";
+} from "./repository.service.js";
 
 export async function getAvailableRepos(
   req: AuthenticatedRequest,

@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { requireAuth } from "../../middleware/auth.middleware";
+import { requireAuth } from "../../middleware/auth.middleware.js";
 import {
   getAvailableRepos,
   postConnectRepository,
@@ -7,7 +7,7 @@ import {
   getRepository,
   postRepositoryReview,
   deleteMyRepository,
-} from "./repository.controller";
+} from "./repository.controller.js";
 
 const router = Router();
 

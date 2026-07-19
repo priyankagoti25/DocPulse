@@ -1,7 +1,7 @@
 import cron from "node-cron";
-import { Repository } from "../models/Repository.model";
-import { recomputeRepositoryScore } from "../modules/repositories/repository.service";
-import { emitRepoScoreUpdated } from "../websocket/socketServer";
+import { Repository } from "../models/Repository.model.js";
+import { recomputeRepositoryScore } from "../modules/repositories/repository.service.js";
+import { emitRepoScoreUpdated } from "../websocket/socketServer.js";
 
 export async function runNightlyRecompute(): Promise<void> {
   console.log("[cron] Starting nightly staleness recompute...");

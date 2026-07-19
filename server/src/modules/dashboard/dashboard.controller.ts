@@ -1,7 +1,7 @@
 import { Response } from "express";
-import { AuthenticatedRequest } from "../../middleware/auth.middleware";
-import { Repository } from "../../models/Repository.model";
-import { runNightlyRecompute } from "../../jobs/recomputeScores.job";
+import { AuthenticatedRequest } from "../../middleware/auth.middleware.js";
+import { Repository } from "../../models/Repository.model.js";
+import { runNightlyRecompute } from "../../jobs/recomputeScores.job.js";
 
 export async function getDashboardSummary(
   req: AuthenticatedRequest,

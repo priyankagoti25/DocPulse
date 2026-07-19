@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { verifyAccessToken } from '../utils/jwt';
+import { Request, Response, NextFunction } from "express";
+import { verifyAccessToken } from "../utils/jwt.js";
 
 export interface AuthenticatedRequest extends Request {
   userId?: string;
@@ -8,12 +8,12 @@ export interface AuthenticatedRequest extends Request {
 export function requireAuth(
   req: AuthenticatedRequest,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void {
   const token = req.cookies?.token;
 
   if (!token) {
-    res.status(401).json({ message: 'Not authenticated' });
+    res.status(401).json({ message: "Not authenticated" });
     return;
   }
 
@@ -22,6 +22,6 @@ export function requireAuth(
     req.userId = payload.userId;
     next();
   } catch {
-    res.status(401).json({ message: 'Invalid or expired session' });
+    res.status(401).json({ message: "Invalid or expired session" });
   }
 }

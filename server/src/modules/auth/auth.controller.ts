@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
-import { env } from "../../config/env";
+import { env } from "../../config/env.js";
 import {
   exchangeCodeForToken,
   fetchGithubProfile,
   upsertUserFromGithub,
-} from "./auth.service";
-import { signAccessToken } from "../../utils/jwt";
-import { AuthenticatedRequest } from "../../middleware/auth.middleware";
-import { User } from "../../models/User.model";
+} from "./auth.service.js";
+import { signAccessToken } from "../../utils/jwt.js";
+import { AuthenticatedRequest } from "../../middleware/auth.middleware.js";
+import { User } from "../../models/User.model.js";
 
 export function redirectToGithub(req: Request, res: Response): void {
   console.log("in api");

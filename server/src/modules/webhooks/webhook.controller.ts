@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import crypto from "crypto";
-import { env } from "../../config/env";
-import { Repository } from "../../models/Repository.model";
-import { CodeChangeEvent } from "../../models/CodeChangeEvent.model";
-import { User } from "../../models/User.model";
-import { getOctokitForUser } from "../../utils/githubClient";
-import { recomputeRepositoryScore } from "../repositories/repository.service";
-import { emitRepoScoreUpdated } from "../../websocket/socketServer";
+import { env } from "../../config/env.js";
+import { Repository } from "../../models/Repository.model.js";
+import { CodeChangeEvent } from "../../models/CodeChangeEvent.model.js";
+import { User } from "../../models/User.model.js";
+import { getOctokitForUser } from "../../utils/githubClient.js";
+import { recomputeRepositoryScore } from "../repositories/repository.service.js";
+import { emitRepoScoreUpdated } from "../../websocket/socketServer.js";
 
 interface RawBodyRequest extends Request {
   rawBody?: Buffer;
@@ -110,7 +110,7 @@ async function processPushEvent(payload: any): Promise<void> {
         const [ownerName, repoName] = repository.fullName.split("/");
         const { data: commitData } = await octokit.request(
           "GET /repos/{owner}/{repo}/commits/{ref}",
-          { owner: ownerName, repo: repoName, ref: headSha },
+          { owner: ownerName ?? "", repo: repoName ?? ".js", ref: headSha },
         );
         linesChanged = commitData.stats?.total ?? 0;
       }

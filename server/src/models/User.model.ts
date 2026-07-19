@@ -1,5 +1,5 @@
 import { Schema, model, Types } from "mongoose";
-import { encrypt } from "../utils/crypto";
+import { encrypt } from "../utils/crypto.js";
 
 export interface IUser {
   _id: Types.ObjectId;

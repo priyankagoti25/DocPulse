@@ -1,12 +1,12 @@
-import jwt from 'jsonwebtoken';
-import { env } from '../config/env';
+import jwt from "jsonwebtoken";
+import { env } from "../config/env.js";
 
 export interface AccessTokenPayload {
   userId: string;
 }
 
 export function signAccessToken(payload: AccessTokenPayload): string {
-  return jwt.sign(payload, env.JWT_SECRET, { expiresIn: '7d' });
+  return jwt.sign(payload, env.JWT_SECRET, { expiresIn: "7d" });
 }
 
 export function verifyAccessToken(token: string): AccessTokenPayload {

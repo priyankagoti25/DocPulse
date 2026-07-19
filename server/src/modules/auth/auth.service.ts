@@ -1,6 +1,6 @@
-import axios from 'axios';
-import { env } from '../../config/env';
-import { User } from '../../models/User.model';
+import axios from "axios";
+import { env } from "../../config/env.js";
+import { User } from "../../models/User.model.js";
 
 interface GithubTokenResponse {
   access_token: string;
@@ -17,33 +17,39 @@ interface GithubProfile {
 
 export async function exchangeCodeForToken(code: string): Promise<string> {
   const response = await axios.post<GithubTokenResponse>(
-    'https://github.com/login/oauth/access_token',
+    "https://github.com/login/oauth/access_token",
     {
       client_id: env.GITHUB_CLIENT_ID,
       client_secret: env.GITHUB_CLIENT_SECRET,
       code,
       redirect_uri: env.GITHUB_CALLBACK_URL,
     },
-    { headers: { Accept: 'application/json' } }
+    { headers: { Accept: "application/json" } },
   );
 
   if (!response.data.access_token) {
-    throw new Error('GitHub did not return an access token');
+    throw new Error("GitHub did not return an access token");
   }
 
   return response.data.access_token;
 }
 
-export async function fetchGithubProfile(accessToken: string): Promise<GithubProfile> {
-  const { data } = await axios.get<GithubProfile>('https://api.github.com/user', {
-    headers: { Authorization: `Bearer ${accessToken}` },
-  });
+export async function fetchGithubProfile(
+  accessToken: string,
+): Promise<GithubProfile> {
+  const { data } = await axios.get<GithubProfile>(
+    "https://api.github.com/user",
+    {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    },
+  );
 
   if (!data.email) {
-    const { data: emails } = await axios.get<{ email: string; primary: boolean }[]>(
-      'https://api.github.com/user/emails',
-      { headers: { Authorization: `Bearer ${accessToken}` } }
-    );
+    const { data: emails } = await axios.get<
+      { email: string; primary: boolean }[]
+    >("https://api.github.com/user/emails", {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
     const primary = emails.find((e) => e.primary);
     data.email = primary?.email ?? null;
   }
@@ -51,7 +57,10 @@ export async function fetchGithubProfile(accessToken: string): Promise<GithubPro
   return data;
 }
 
-export async function upsertUserFromGithub(profile: GithubProfile, accessToken: string) {
+export async function upsertUserFromGithub(
+  profile: GithubProfile,
+  accessToken: string,
+) {
   let user = await User.findOne({ githubId: profile.id });
 
   if (!user) {

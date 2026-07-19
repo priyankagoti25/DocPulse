@@ -1,14 +1,14 @@
-import { env } from "../../config/env";
-import { Repository, IRepository } from "../../models/Repository.model";
-import { ReviewAction } from "../../models/ReviewAction.model";
-import { CodeChangeEvent } from "../../models/CodeChangeEvent.model";
-import { User } from "../../models/User.model";
-import { getOctokitForUser } from "../../utils/githubClient";
+import { env } from "../../config/env.js";
+import { Repository, IRepository } from "../../models/Repository.model.js";
+import { ReviewAction } from "../../models/ReviewAction.model.js";
+import { CodeChangeEvent } from "../../models/CodeChangeEvent.model.js";
+import { User } from "../../models/User.model.js";
+import { getOctokitForUser } from "../../utils/githubClient.js";
 import {
   computeStalenessScore,
   scoreToStatus,
   daysBetween,
-} from "../staleness/scoreEngine";
+} from "../staleness/scoreEngine.js";
 import { Types } from "mongoose";
 
 export interface AvailableRepo {
@@ -211,8 +211,8 @@ export async function deleteRepository(
         const octokit = getOctokitForUser(user);
         const [owner, repo] = repository.fullName.split("/");
         await octokit.request("DELETE /repos/{owner}/{repo}/hooks/{hook_id}", {
-          owner,
-          repo,
+          owner: owner ?? "",
+          repo: repo ?? "",
           hook_id: repository.hookId,
         });
       }

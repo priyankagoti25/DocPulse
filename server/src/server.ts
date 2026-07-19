@@ -1,9 +1,9 @@
 import http from "http";
-import app from "./app";
-import { connectDB } from "./config/db";
-import { env } from "./config/env";
-import { initSocketServer } from "./websocket/socketServer";
-import { scheduleNightlyRecompute } from "./jobs/recomputeScores.job";
+import app from "./app.js";
+import { connectDB } from "./config/db.js";
+import { env } from "./config/env.js";
+import { initSocketServer } from "./websocket/socketServer.js";
+import { scheduleNightlyRecompute } from "./jobs/recomputeScores.job.js";
 
 async function bootstrap() {
   await connectDB();

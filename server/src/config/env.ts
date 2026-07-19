@@ -12,9 +12,7 @@ const envSchema = z.object({
   GITHUB_CLIENT_SECRET: z.string().min(1, "GITHUB_CLIENT_SECRET is required"),
   GITHUB_CALLBACK_URL: z.string().min(1, "GITHUB_CALLBACK_URL is required"),
   GITHUB_WEBHOOK_SECRET: z.string().min(1, "GITHUB_WEBHOOK_SECRET is required"),
-  SERVER_BASE_URL: z
-    .string()
-    .default("https://scoured-cinema-boogieman.ngrok-free.dev"),
+  SERVER_BASE_URL: z.string(),
   CLIENT_URL: z.string().default("http://localhost:5173"),
 });
 
